@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxesMunicipality.Core.DTOs;
+using TaxesMunicipality.Core.Services;
 
 namespace TaxesMunicipality.Api.Controllers;
 
@@ -7,19 +8,17 @@ namespace TaxesMunicipality.Api.Controllers;
 [Route("[controller]")]
 public class MunicipalityTaxController : ControllerBase
 {
-    public MunicipalityTaxController()
-    {
+    private readonly IMunicipalityTaxService _municipalityTaxService;
 
+    public MunicipalityTaxController(IMunicipalityTaxService municipalityTaxService)
+    {
+        _municipalityTaxService = municipalityTaxService;
     }
 
     [HttpGet]
     public IActionResult GetTax([FromQuery] GetTaxRequest request)
     {
-        var returnModel = new GetTaxResponse
-        {
-            Municipality = request.Municipality,
-            TaxRate = 0.01
-        };
+        var returnModel = _municipalityTaxService.GetTaxRate(request.Municipality, request.Date);
 
         return Ok(returnModel);
     }
