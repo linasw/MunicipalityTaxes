@@ -15,7 +15,13 @@ public class MunicipalityTaxController : ControllerBase
     [HttpGet]
     public IActionResult GetTax([FromQuery] GetTaxRequest request)
     {
-        return Ok();
+        var returnModel = new GetTaxResponse
+        {
+            Municipality = request.Municipality,
+            TaxRate = 0.01
+        };
+
+        return Ok(returnModel);
     }
 }
 
