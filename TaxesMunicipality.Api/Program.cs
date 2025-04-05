@@ -1,3 +1,4 @@
+using TaxesMunicipality.Core.Interfaces;
 using TaxesMunicipality.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);

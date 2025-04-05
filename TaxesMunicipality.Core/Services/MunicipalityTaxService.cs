@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaxesMunicipality.Core.DTOs;
+﻿using TaxesMunicipality.Core.DTOs;
+using TaxesMunicipality.Core.Interfaces;
 
 namespace TaxesMunicipality.Core.Services
 {
     public class MunicipalityTaxService : IMunicipalityTaxService
     {
-        public GetTaxResponse GetTaxRate(string municipality, DateTime date)
+        public GetTaxResponseDTO GetTaxRate(string municipality, DateTime date)
         {
-            var model = new GetTaxResponse { Municipality = municipality, TaxRate = 0.01 };
+            var model = new GetTaxResponseDTO { Municipality = municipality, TaxRate = 0.01 };
 
             return model;
         }

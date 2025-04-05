@@ -1,9 +1,9 @@
 ﻿namespace TaxesMunicipality.Core.DTOs
 {
-    public record GetTaxResponse
+    public record GetTaxRequestDTO
     {
         public required string Municipality { get; set; }
 
-        public double TaxRate { get; set; }
+        public required DateTime Date { get; set; }
     }
 }

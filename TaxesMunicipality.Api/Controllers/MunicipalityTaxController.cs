@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxesMunicipality.Core.DTOs;
-using TaxesMunicipality.Core.Services;
+using TaxesMunicipality.Core.Interfaces;
 
 namespace TaxesMunicipality.Api.Controllers;
 
@@ -16,7 +16,7 @@ public class MunicipalityTaxController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetTax([FromQuery] GetTaxRequest request)
+    public IActionResult GetTax([FromQuery] GetTaxRequestDTO request)
     {
         var returnModel = _municipalityTaxService.GetTaxRate(request.Municipality, request.Date);
 
