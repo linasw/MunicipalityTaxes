@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35828.75 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesMunicipality.Api", "TaxesMunicipality.Api\TaxesMunicipality.Api.csproj", "{E5895B37-8B5B-462F-986F-C15E93F4C3E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesMunicipality.Core", "TaxesMunicipality.Core\TaxesMunicipality.Core.csproj", "{409474A7-8E3A-481B-AC84-B660DCBCB1E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E5895B37-8B5B-462F-986F-C15E93F4C3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5895B37-8B5B-462F-986F-C15E93F4C3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5895B37-8B5B-462F-986F-C15E93F4C3E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
