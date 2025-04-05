@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TaxesMunicipality.Core\TaxesMunicipality.Core.csproj" />
+    <ProjectReference Include="..\TaxesMunicipality.Data\TaxesMunicipality.Data.csproj" />
   </ItemGroup>
 
 </Project>

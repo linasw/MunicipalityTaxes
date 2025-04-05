@@ -4,6 +4,6 @@ namespace TaxesMunicipality.Core.Interfaces
 {
     public interface IMunicipalityTaxRepository
     {
-        MunicipalityTaxModel GetMunicipalityTax(int municipality, DateTime from, DateTime to);
+        IEnumerable<MunicipalityTaxModel> GetMunicipalityTaxes(string municipality, DateTime date);
     }
 }

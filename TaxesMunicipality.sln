@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesMunicipality.Api", "Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesMunicipality.Core", "TaxesMunicipality.Core\TaxesMunicipality.Core.csproj", "{409474A7-8E3A-481B-AC84-B660DCBCB1E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxesMunicipality.Data", "TaxesMunicipality.Data\TaxesMunicipality.Data.csproj", "{98488111-A851-41A8-80A0-5F665816C619}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{409474A7-8E3A-481B-AC84-B660DCBCB1E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98488111-A851-41A8-80A0-5F665816C619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98488111-A851-41A8-80A0-5F665816C619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98488111-A851-41A8-80A0-5F665816C619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98488111-A851-41A8-80A0-5F665816C619}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
