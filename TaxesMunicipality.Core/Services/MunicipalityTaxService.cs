@@ -13,64 +13,68 @@ namespace TaxesMunicipality.Core.Services
             _municipalityTaxRepository = municipalityTaxRepository;
         }
 
-        public GetTaxResponseDTO GetTaxRate(string municipality, DateTime date)
+        public GetTaxResponseDTO? GetTaxRate(string municipality, DateTime date)
         {
-            var taxes = _municipalityTaxRepository.GetMunicipalityTaxes(municipality, date);
-
-            //get the first tax based on priority: Daily > Weekly > Monthly > Yearly
-            var dailyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Daily);
-
-            if (dailyTax != null)
+            try
             {
+
+
+                var taxes = _municipalityTaxRepository.GetMunicipalityTaxes(municipality, date);
+
+                if (taxes == null)
+                {
+                    return null;
+                }
+
                 var response = new GetTaxResponseDTO
                 {
-                    Municipality = municipality,
-                    TaxRate = dailyTax.TaxRate,
+                    Municipality = municipality
                 };
 
-                return response;
-            }
+                //get the first tax based on priority: Daily > Weekly > Monthly > Yearly
+                var dailyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Daily);
 
-            var weeklyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Weekly);
-
-            if (weeklyTax != null)
-            {
-                var response = new GetTaxResponseDTO
+                if (dailyTax != null)
                 {
-                    Municipality = municipality,
-                    TaxRate = weeklyTax.TaxRate,
-                };
+                    response.TaxRate = dailyTax.TaxRate;
 
-                return response;
-            }
+                    return response;
+                }
 
-            var monthlyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Monthly);
+                var weeklyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Weekly);
 
-            if (monthlyTax != null)
-            {
-                var response = new GetTaxResponseDTO
+                if (weeklyTax != null)
                 {
-                    Municipality = municipality,
-                    TaxRate = monthlyTax.TaxRate,
-                };
+                    response.TaxRate = weeklyTax.TaxRate;
 
-                return response;
-            }
+                    return response;
+                }
 
-            var yearlyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Yearly);
+                var monthlyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Monthly);
 
-            if (yearlyTax != null)
-            {
-                var response = new GetTaxResponseDTO
+                if (monthlyTax != null)
                 {
-                    Municipality = municipality,
-                    TaxRate = yearlyTax.TaxRate,
-                };
+                    response.TaxRate = monthlyTax.TaxRate;
 
-                return response;
+                    return response;
+                }
+
+                var yearlyTax = taxes.FirstOrDefault(x => x.Type == TaxType.Yearly);
+
+                if (yearlyTax != null)
+                {
+                    response.TaxRate = yearlyTax.TaxRate;
+
+                    return response;
+                }
+
+                return null;
             }
-
-            return null;
+            catch (Exception ex)
+            {
+                //log the ex
+                return null;
+            }
         }
     }
 }

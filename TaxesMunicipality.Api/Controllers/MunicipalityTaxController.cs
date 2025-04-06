@@ -20,6 +20,11 @@ public class MunicipalityTaxController : ControllerBase
     {
         var returnModel = _municipalityTaxService.GetTaxRate(request.Municipality, request.Date);
 
+        if (returnModel == null)
+        {
+            return NotFound();
+        }
+
         return Ok(returnModel);
     }
 }
