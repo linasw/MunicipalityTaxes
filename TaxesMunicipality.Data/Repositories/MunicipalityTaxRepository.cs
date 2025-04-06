@@ -12,6 +12,21 @@ namespace TaxesMunicipality.Data.Repositories
             _context = context;
         }
 
+        public async Task<bool> AddMunicipalityTaxAsync(MunicipalityTaxModel municipalityTax)
+        {
+            try
+            {
+                await _context.MunicipalityTaxes.AddAsync(municipalityTax);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex) 
+            {
+                return false;
+            }
+        }
+
         public IEnumerable<MunicipalityTaxModel> GetMunicipalityTaxes(string municipality, DateTime date)
         {
             //ignore case for municipalities

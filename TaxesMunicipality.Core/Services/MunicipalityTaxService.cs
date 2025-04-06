@@ -1,6 +1,7 @@
 ﻿using TaxesMunicipality.Core.DTOs;
 using TaxesMunicipality.Core.Enums;
 using TaxesMunicipality.Core.Interfaces;
+using TaxesMunicipality.Core.Models;
 
 namespace TaxesMunicipality.Core.Services
 {
@@ -13,12 +14,32 @@ namespace TaxesMunicipality.Core.Services
             _municipalityTaxRepository = municipalityTaxRepository;
         }
 
+        public async Task<bool> AddTaxRateAsync(AddTaxRequestDTO addTaxRequestDTO)
+        {
+            try
+            {
+                var taxModel = new MunicipalityTaxModel
+                {
+                    Municipality = addTaxRequestDTO.Municipilaty,
+                    Type = addTaxRequestDTO.TaxType,
+                    TaxRate = addTaxRequestDTO.TaxRate,
+                    FromDate = addTaxRequestDTO.FromDate.Date,
+                    ToDate = addTaxRequestDTO.ToDate.Date,
+                };
+
+                return await _municipalityTaxRepository.AddMunicipalityTaxAsync(taxModel);
+            }
+            catch (Exception ex) 
+            {
+                //log ex
+                return false;
+            }
+        }
+
         public GetTaxResponseDTO? GetTaxRate(string municipality, DateTime date)
         {
             try
             {
-
-
                 var taxes = _municipalityTaxRepository.GetMunicipalityTaxes(municipality, date);
 
                 if (taxes == null)

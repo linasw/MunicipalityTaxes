@@ -27,5 +27,24 @@ public class MunicipalityTaxController : ControllerBase
 
         return Ok(returnModel);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddTax(AddTaxRequestDTO request)
+    {
+        //toDate has to be higher than fromDate
+        if (request.FromDate.Date > request.ToDate.Date)
+        {
+            return BadRequest();
+        }
+
+        var result = await _municipalityTaxService.AddTaxRateAsync(request);
+
+        if (!result)
+        {
+            return BadRequest();
+        }
+
+        return Ok();
+    }
 }
 

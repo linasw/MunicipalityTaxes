@@ -5,5 +5,6 @@ namespace TaxesMunicipality.Core.Interfaces
     public interface IMunicipalityTaxRepository
     {
         IEnumerable<MunicipalityTaxModel> GetMunicipalityTaxes(string municipality, DateTime date);
+        Task<bool> AddMunicipalityTaxAsync(MunicipalityTaxModel municipalityTax);
     }
 }
