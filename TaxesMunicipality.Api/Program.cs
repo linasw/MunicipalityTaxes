@@ -34,4 +34,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetService<TaxesDbContext>();
+    dbContext.Database.EnsureCreated();
+}
+
 app.Run();

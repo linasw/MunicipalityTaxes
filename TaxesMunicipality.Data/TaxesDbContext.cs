@@ -20,8 +20,8 @@ namespace TaxesMunicipality.Data
 
             modelBuilder.Entity<MunicipalityTaxModel>()
                 .Property(x => x.Municipality)
-                .IsRequired()
-                .UseCollation("SQL_Latin1_General_CP1_CI_AS");
+                .IsRequired();
+                //.UseCollation("SQL_Latin1_General_CP1_CI_AI"); <- this should make the column case insensitive, but won't work
 
             modelBuilder.Entity<MunicipalityTaxModel>()
                 .Property(x => x.TaxRate)

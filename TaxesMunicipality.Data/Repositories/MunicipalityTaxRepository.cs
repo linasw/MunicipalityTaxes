@@ -16,7 +16,7 @@ namespace TaxesMunicipality.Data.Repositories
         {
             //ignore case for municipalities
             var toReturn = _context.MunicipalityTaxes
-                .Where(x => x.Municipality.Equals(municipality))
+                .Where(x => x.Municipality.ToLower() == municipality.ToLower())
                 .Where(x => x.FromDate <= date && x.ToDate >= date);
 
             return toReturn;
