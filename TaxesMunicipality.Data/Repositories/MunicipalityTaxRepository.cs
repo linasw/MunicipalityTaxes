@@ -49,10 +49,10 @@ namespace TaxesMunicipality.Data.Repositories
                 }
             };
 
-            //ignore case for municipalities && returns not all taxes... fix
+            //ignore case for municipalities
             var toReturn = taxes
                 .Where(x => x.Municipality.Equals(municipality, StringComparison.CurrentCultureIgnoreCase))
-                .Where(x => x.FromDate >= date && x.ToDate <= date);
+                .Where(x => x.FromDate <= date && x.ToDate >= date);
 
             return toReturn;
         }
