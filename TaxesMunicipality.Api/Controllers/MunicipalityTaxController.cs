@@ -44,7 +44,7 @@ public class MunicipalityTaxController : ControllerBase
             return BadRequest();
         }
 
-        return Ok();
+        return CreatedAtAction(nameof(GetTax), new { municipality = request.Municipilaty, rate = request.TaxRate });
     }
 }
 
