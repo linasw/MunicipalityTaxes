@@ -7,5 +7,7 @@ namespace TaxesMunicipality.Core.Interfaces
         GetTaxResponseDTO? GetTaxRate(string municipality, DateTime date);
 
         Task<bool> AddTaxRateAsync(AddTaxRequestDTO addTaxRequestDTO);
+
+        Task<bool> UpdateTaxRateAsync(UpdateTaxRequestDTO updateTaxRequestDTO);
     }
 }

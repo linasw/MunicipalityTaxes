@@ -20,7 +20,7 @@ namespace TaxesMunicipality.Core.Services
             {
                 var taxModel = new MunicipalityTaxModel
                 {
-                    Municipality = addTaxRequestDTO.Municipilaty,
+                    Municipality = addTaxRequestDTO.Municipality,
                     Type = addTaxRequestDTO.TaxType,
                     TaxRate = addTaxRequestDTO.TaxRate,
                     FromDate = addTaxRequestDTO.FromDate.Date,
@@ -95,6 +95,26 @@ namespace TaxesMunicipality.Core.Services
             {
                 //log the ex
                 return null;
+            }
+        }
+
+        public async Task<bool> UpdateTaxRateAsync(UpdateTaxRequestDTO updateTaxRequestDTO)
+        {
+            try
+            {
+                var tax = await _municipalityTaxRepository.GetMunicipalityTaxByIdAsync(updateTaxRequestDTO.Id);
+
+                if (tax == null)
+                {
+                    return false;
+                }
+
+                return await _municipalityTaxRepository.UpdateMunicipalityTaxAsync(updateTaxRequestDTO);
+            }
+            catch (Exception ex) 
+            {
+                //log ex
+                return false;
             }
         }
     }

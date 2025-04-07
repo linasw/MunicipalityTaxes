@@ -1,4 +1,6 @@
-﻿using TaxesMunicipality.Core.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using TaxesMunicipality.Core.DTOs;
+using TaxesMunicipality.Core.Interfaces;
 using TaxesMunicipality.Core.Models;
 
 namespace TaxesMunicipality.Data.Repositories
@@ -27,6 +29,18 @@ namespace TaxesMunicipality.Data.Repositories
             }
         }
 
+        public async Task<MunicipalityTaxModel?> GetMunicipalityTaxByIdAsync(int id)
+        {
+            try
+            {
+                return await _context.MunicipalityTaxes.FirstOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public IEnumerable<MunicipalityTaxModel> GetMunicipalityTaxes(string municipality, DateTime date)
         {
             //ignore case for municipalities
@@ -35,6 +49,27 @@ namespace TaxesMunicipality.Data.Repositories
                 .Where(x => x.FromDate <= date && x.ToDate >= date);
 
             return toReturn;
+        }
+
+        public async Task<bool> UpdateMunicipalityTaxAsync(UpdateTaxRequestDTO municipalityTax)
+        {
+            try
+            { 
+                await _context.MunicipalityTaxes.Where(x => x.Id == municipalityTax.Id)
+                    .ExecuteUpdateAsync(x => x
+                        .SetProperty(z => z.Municipality, municipalityTax.Municipality)
+                        .SetProperty(z => z.TaxRate, municipalityTax.TaxRate)
+                        .SetProperty(z => z.Type, municipalityTax.TaxType)
+                        .SetProperty(z => z.FromDate, municipalityTax.FromDate)
+                        .SetProperty(z => z.ToDate, municipalityTax.ToDate));
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                return false;
+            }
         }
     }
 }

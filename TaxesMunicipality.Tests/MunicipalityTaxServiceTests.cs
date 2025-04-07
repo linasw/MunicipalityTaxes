@@ -149,7 +149,7 @@ namespace TaxesMunicipality.Tests
         {
             var request = new AddTaxRequestDTO
             {
-                Municipilaty = "Vilnius",
+                Municipality = "Vilnius",
                 TaxRate = 0.7,
                 TaxType = TaxType.Yearly,
                 FromDate = new DateTime(2024, 1, 1),
@@ -159,6 +159,37 @@ namespace TaxesMunicipality.Tests
             _repositoryMock.Setup(x => x.AddMunicipalityTaxAsync(It.IsAny<MunicipalityTaxModel>())).ReturnsAsync(true);
 
             var result = await _taxServiceMock.AddTaxRateAsync(request);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public async Task UpdateTaxRateAsync_ProperRequest_ReturnsUpdatedTaxRate()
+        {
+            var vilniusTax = new MunicipalityTaxModel
+            {
+                Id = 5,
+                Municipality = "Vilnius",
+                TaxRate = 0.6,
+                Type = TaxType.Yearly,
+                FromDate = new DateTime(2024, 1, 1),
+                ToDate = new DateTime(2024, 12, 31)
+            };
+
+            var request = new UpdateTaxRequestDTO
+            {
+                Id = 5,
+                Municipality = "Vilnius",
+                TaxRate = 0.7,
+                TaxType = TaxType.Yearly,
+                FromDate = new DateTime(2024, 1, 1),
+                ToDate = new DateTime(2024, 12, 31)
+            };
+
+            _repositoryMock.Setup(x => x.GetMunicipalityTaxByIdAsync(request.Id)).ReturnsAsync(vilniusTax);
+            _repositoryMock.Setup(x => x.UpdateMunicipalityTaxAsync(It.IsAny<UpdateTaxRequestDTO>())).ReturnsAsync(true);
+
+            var result = await _taxServiceMock.UpdateTaxRateAsync(request);
 
             Assert.True(result);
         }

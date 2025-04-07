@@ -2,8 +2,10 @@
 
 namespace TaxesMunicipality.Core.DTOs
 {
-    public class AddTaxRequestDTO
+    public class UpdateTaxRequestDTO
     {
+        public required int Id { get; set; }
+
         public required string Municipality { get; set; }
 
         public required TaxType TaxType { get; set; }
