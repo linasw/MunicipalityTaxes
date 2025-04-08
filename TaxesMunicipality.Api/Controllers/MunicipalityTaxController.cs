@@ -51,7 +51,8 @@ public class MunicipalityTaxController : ControllerBase
     [Route("update")]
     public async Task<IActionResult> UpdateTax(UpdateTaxRequestDTO request)
     {
-        //we don't have a functionality to get all current tax rates, but we need to know the ID to update the tax record... TODO in the future: add endpoint to get all tax records
+        //we don't have a functionality to get all current tax rates, but we need to know the ID to update the tax record...
+        //TODO in the future: add endpoint to get all tax records with IDs OR return ID in GetTax
 
         //toDate has to be higher than fromDate
         if (request.FromDate.Date > request.ToDate.Date)
